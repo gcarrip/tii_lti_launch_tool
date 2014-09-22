@@ -1,0 +1,36 @@
+<html>
+    <head><title>Configure a Tool Provider</title></head>
+    <body>
+        <style type="text/css">
+            input {
+                width: 30em;
+            }
+        </style>
+
+        <h1>Tool Provider Configuration</h1>
+        {% if message %}
+        <p style="color: #ff3d23;">{{ message }}</p>
+        {% endif %}
+        <form action="/tool_launch" method="post">
+            <table>
+              {% for key in default_launch_data %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td><input name="{{ key }}" type="text" {%
+                               if default_launch_data[key] != None
+                               %}value="{{ default_launch_data[key] }}"{% endif %} /></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>Launch as assignment</td>
+                    <td><input type="checkbox" name="assignment" checked="checked"></td>
+                </tr>
+                <tr>
+                    <td>Launch automatically</td>
+                    <td><input type="checkbox" name="autolaunch" checked="checked"></td>
+                </tr>
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

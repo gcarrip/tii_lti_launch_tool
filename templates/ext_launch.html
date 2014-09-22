@@ -1,0 +1,33 @@
+<html> <head><title>Launching LTI Extension</title></head>
+    <body>
+        <div id="ltiLaunchFormSubmitArea">
+
+            <table>
+                <tr>
+                    <td colspan="2">Launch Parameters</td>
+                </tr>
+                {% for key in launch_data %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ launch_data[key] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <form action="{{ launch_url }}" name="ltiLaunchForm"
+                  id="ltiLaunchForm" method="get">
+              {% for key in launch_data %}
+                <input type="hidden" name="{{ key }}" value="{{ launch_data[key] }}"/>
+                {% endfor %}
+                <button type="submit">Launch the tool</button>
+            </form>
+
+        </div>
+        {% if autolaunch %}
+        <script language="javascript">
+            document.getElementById("ltiLaunchFormSubmitArea").style.display = "none";
+            document.ltiLaunchForm.submit();
+        </script>
+        {% endif %}
+    </body>
+</html>

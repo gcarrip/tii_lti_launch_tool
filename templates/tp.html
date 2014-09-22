@@ -1,0 +1,25 @@
+<html> <head><title>{{ title }}</title></head>
+  <body>
+    <h3>{{ title }}</h3>
+    <div id="ltiLaunchFormSubmitArea">
+      <h4>Parameters</h4>
+      <table>
+        {% for key in tp_data %}
+        <tr>
+          <td><b>{{ key }}</b></td>
+          {% for kkey in tp_data[key] %}
+          <td><i>{{ kkey }}: </i>
+            {% if kkey == "launch_url" %}
+            <a href="/tool_config?launch_url={{ tp_data[key][kkey] }}">
+              {{ tp_data[key][kkey] }}
+            </a></td>
+          {% else %}
+          <td>{{ tp_data[key][kkey] }}</td>
+          {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
